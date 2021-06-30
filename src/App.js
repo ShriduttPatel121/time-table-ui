@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, BrowserRouter as Router, } from 'react-router-
 
 import Layout from './components/layout/layout';
 import { AuthContext } from './shared/context/auth-context';
+import Login from "./Pages/Auth/Login";
 function App() {
 
   const [token, setToken] = useState();
@@ -21,6 +22,7 @@ function App() {
     setIsLoggedIn(false);
     setToken(null);
     setUserId(null);
+    setUserType("")
   }, []);
 
   let routes = null;
@@ -62,7 +64,7 @@ function App() {
             <Redirect to="/login" />
           </Route>
           <Route path="/login" >
-            <span>login view</span>
+            <Login />
           </Route>
           <Redirect to="/login" />
       </Switch>
@@ -70,7 +72,7 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout, token: token, userId: userId}}>
+    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout, token: token, userId: userId, userType: userType}}>
       <Router>
         <Layout>
           {routes}

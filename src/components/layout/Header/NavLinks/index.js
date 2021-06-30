@@ -41,20 +41,17 @@ const NavLinks = (props) => {
     history.replace("/login");
   };
 
-  console.log(auth.isLoggedIn);
+  console.log(auth);
   return (
     <>
       <Tabs value={tabValue} onChange={handleChange} className={classes.root}>
-        {auth.isLoggedIn ? (
-          auth.userType.toUpperCase === "ADMIN" ? (
-            <>
                 <Tab
                 label="Assign Lecture"
                 value="/assignLecture"
                 to="/assignLecture"
                 exact
                 component={NavLink}
-                style={{ display: !auth.isLoggedIn ? "hidden" : "flex" }}
+                style={{ display: (auth.isLoggedIn && (auth.userType.toUpperCase() === "ADMIN")) ? "flex" : "none" }}
                 />
                 <Tab
                 label="Add Professor"
@@ -62,20 +59,16 @@ const NavLinks = (props) => {
                 to="/addProfessor"
                 exact
                 component={NavLink}
-                style={{ display: !auth.isLoggedIn ? "hidden" : "flex" }}
+                style={{ display: (auth.isLoggedIn && (auth.userType.toUpperCase() === "ADMIN")) ? "flex" : "none" }}
                 />  
-            </>
-        ) : (
             <Tab
               label="Time Table"
               value="/timeTable"
               to="/timeTable"
               exact
               component={NavLink}
-              style={{ display: !auth.isLoggedIn ? "hidden" : "flex" }}
+              style={{ display: (auth.isLoggedIn && !(auth.userType.toUpperCase() === "ADMIN")) ? "flex" : "none" }}
             />
-        )
-        ) : null}
         
         <Tab
           style={{ display: !auth.isLoggedIn ? "flex" : "none" }}
