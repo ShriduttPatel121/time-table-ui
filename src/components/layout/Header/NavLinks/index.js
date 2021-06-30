@@ -41,6 +41,7 @@ const NavLinks = (props) => {
     history.replace("/login");
   };
 
+  console.log(auth.isLoggedIn);
   return (
     <>
       <Tabs value={tabValue} onChange={handleChange} className={classes.root}>
@@ -77,7 +78,7 @@ const NavLinks = (props) => {
         ) : null}
         
         <Tab
-          style={{ display: !auth.isLoggedIn ? "none" : "flex" }}
+          style={{ display: !auth.isLoggedIn ? "flex" : "none" }}
           label="Authenticate"
           value="/login"
           to="/login"
@@ -86,7 +87,7 @@ const NavLinks = (props) => {
         />
         <Tab
           label="Logout"
-          style={{ display: auth.isLoggedIn ? "none" : "flex" }}
+          style={{ display: !auth.isLoggedIn ? "none" : "flex" }}
           onClick={logouthandler}
         />
         <Tab style={{ display: "none" }} value={0} />
