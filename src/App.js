@@ -5,6 +5,7 @@ import Layout from './components/layout/layout';
 import { AuthContext } from './shared/context/auth-context';
 import Login from "./Pages/Auth/Login";
 import TimeTableView from "./Pages/TimeTable/TimeTableView";
+import AddProfessorView from "./Pages/AddProfessor/AddProfessorView";
 function App() {
 
   const [token, setToken] = useState();
@@ -39,7 +40,7 @@ function App() {
             <span>assign lecture component</span>
           </Route>
           <Route path="/addProfessor" >
-            <span>add professor component</span>
+            <AddProfessorView />
           </Route>
           <Redirect to="/assignLecture" />
         </Switch>

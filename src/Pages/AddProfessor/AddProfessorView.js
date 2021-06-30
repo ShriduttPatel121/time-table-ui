@@ -7,7 +7,7 @@ import {
   Container,
   Button,
   Divider,
-  Box
+  Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
@@ -40,34 +40,21 @@ const useStyles = makeStyles({
 });
 
 const initialValues = {
+  name: "",
   userName: "",
   password: "",
 };
 
 const validation = Yup.object({
+  name: Yup.string().min(5, "min 5 characters or more").required(),
   userName: Yup.string().min(5, "min 5 characters or more").required(),
   password: Yup.string().required().min(5, "min 5 characters or more"),
 });
 
-const Login = (props) => {
+const AddProfessorView = (props) => {
   const classes = useStyles();
   const auth = useContext(AuthContext);
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
-
-  const [passwordVisibility, setPasswordVisibility] = useState("password");
-  //const [cnfPasswordVisibility, setCnfPasswordVisibility] = useState("password");
-
-  const setVisibility = (type) => {
-    if (type === "text") {
-      return "password";
-    } else {
-      return "text";
-    }
-  };
-
-  const passwordVisibilityHandler = () => {
-    setPasswordVisibility((preState) => setVisibility(preState));
-  };
 
   return (
     <Formik
@@ -76,41 +63,42 @@ const Login = (props) => {
       onSubmit={async (value, { setSubmitting, resetForm }) => {
         console.log(value);
         try {
-            const resData = await sendRequest("http://localhost:8080/api/auth/login", "POST", JSON.stringify(value), { "Content-Type": "application/json" });
-            auth.login(resData.userId, resData.token, resData.type);
+          const resData = await sendRequest(
+            "http://localhost:8080/api/admin/addUser",
+            "POST",
+            JSON.stringify({ ...value, type: "professor" }),
+            { "Content-Type": "application/json", authorization: auth.token }
+          );
+          alert(resData.message);
+          resetForm();
         } catch (e) {
-            console.log(e)
-            alert(error || "somthing went wrong");
+          console.log(e);
+          alert(error || "somthing went wrong");
         }
       }}
     >
       {(props) => (
         <Container className={classes.root} maxWidth="md">
           <Card className={classes.formContainer}>
-            <Typography component="h1" variant="h4">
-              Login
+            <Typography component="h4" variant="h4">
+              Add professor
             </Typography>
             <Divider style={{ margin: "1rem 0" }} />
             <form onSubmit={props.handleSubmit}>
+              <TextInput type="text" name="name" label="Name" />
               <TextInput type="text" name="userName" label="User Name" />
-              <TextInput
-                type={passwordVisibility}
-                name="password"
-                visibilityicon="true"
-                visiblilitytoggler={passwordVisibilityHandler}
-                label="Password"
-              />
+              <TextInput type="text" name="password" label="Password" />
               <Box display="flex" flexDirection="column">
-              <Button
-                type="submit"
-                size="large"
-                variant="contained"
-                disabled={!props.isValid || props.isSubmitting}
-                color="primary"
-                className={classes.sybmitBtn}
-              >
-                Login
-              </Button>
+                <Button
+                  type="submit"
+                  size="large"
+                  variant="contained"
+                  disabled={!props.isValid || props.isSubmitting}
+                  color="primary"
+                  className={classes.sybmitBtn}
+                >
+                  ADD
+                </Button>
               </Box>
             </form>
           </Card>
@@ -119,4 +107,4 @@ const Login = (props) => {
     </Formik>
   );
 };
-export default Login;
+export default AddProfessorView;
