@@ -4,6 +4,7 @@ import { Switch, Route, Redirect, BrowserRouter as Router, } from 'react-router-
 import Layout from './components/layout/layout';
 import { AuthContext } from './shared/context/auth-context';
 import Login from "./Pages/Auth/Login";
+import TimeTableView from "./Pages/TimeTable/TimeTableView";
 function App() {
 
   const [token, setToken] = useState();
@@ -13,7 +14,7 @@ function App() {
 
   const login = useCallback((uid, token, type) => {
     setIsLoggedIn(!!token);
-    setToken(token);
+    setToken("Bearer " + token);
     setUserId(uid);
     setUserType(type)
   }, []);
@@ -51,7 +52,7 @@ function App() {
               <Redirect to="/timeTable" />
             </Route>
             <Route path="/timeTable" >
-              <span>time table component</span>
+              <TimeTableView />
             </Route>
             <Redirect to="/timeTable" />
         </Switch>

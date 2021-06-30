@@ -41,7 +41,6 @@ const NavLinks = (props) => {
     history.replace("/login");
   };
 
-  console.log(auth);
   return (
     <>
       <Tabs value={tabValue} onChange={handleChange} className={classes.root}>
