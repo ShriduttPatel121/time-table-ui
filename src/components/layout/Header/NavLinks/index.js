@@ -44,7 +44,8 @@ const NavLinks = (props) => {
   return (
     <>
       <Tabs value={tabValue} onChange={handleChange} className={classes.root}>
-        {auth.userType.toUpperCase === "ADMIN" ? (
+        {auth.isLoggedIn ? (
+          auth.userType.toUpperCase === "ADMIN" ? (
             <>
                 <Tab
                 label="Assign Lecture"
@@ -72,7 +73,9 @@ const NavLinks = (props) => {
               component={NavLink}
               style={{ display: !auth.isLoggedIn ? "hidden" : "flex" }}
             />
-        )}
+        )
+        ) : null}
+        
         <Tab
           style={{ display: !auth.isLoggedIn ? "none" : "flex" }}
           label="Authenticate"
