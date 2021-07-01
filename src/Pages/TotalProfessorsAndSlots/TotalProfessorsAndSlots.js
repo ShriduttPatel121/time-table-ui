@@ -228,7 +228,7 @@ const TotalProfessorsAndSlots =  (props) =>{
                                             pl.lectures.map((le, i) =>(
                                             <ListItem className={classes.listItem} divider={(i < pl.lectures.length - 1)} >
                                                 <Typography variant="body2">{le.classRoom.name}</Typography>
-                                                <Typography variant="body2">{le.slotNumber}</Typography>
+                                                <Typography variant="body2">{le.slotNumber + 1}</Typography>
                                                 <Typography variant="body2">{le.day}</Typography>
                                             </ListItem>
                                         ))
