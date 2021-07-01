@@ -11,7 +11,11 @@ import Spinner from '../../shared/components/spinner';
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '75%',
-      margin: 'auto'
+      margin: 'auto',
+      display: "flex",
+      justifyContent: "center",
+      flexDirection: "column",
+      alignItems: "center"
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -52,10 +56,15 @@ const TotalProfessorsAndSlots =  (props) =>{
                         <Accordion key={pl.professor._id} style={{width: "70%"}}>
                             <AccordionSummary 
                                 expandIcon={<ExpandMoreIcon />}
-                                style={{display: "flex", justifyContent: "space-between"}}
+                                style={{display: "flex"}}
                             >
+                                <div style={{width: "17rem"}}>
                                 <Typography className={classes.heading}>Professor Name: {pl.professor.name}</Typography>
-                                <Typography className={classes.heading}>User Name: {pl.professor.userName}</Typography>
+                                </div>
+                                { "   " }
+                                <div style={{width: "17rem"}}>
+                                <Typography style={{marginLeft: "3rem"}} className={classes.heading}>User Name: {pl.professor.userName}</Typography>
+                                </div>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <List style={{width: "100%"}}>
