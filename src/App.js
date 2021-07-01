@@ -7,6 +7,7 @@ import Login from "./Pages/Auth/Login";
 import TimeTableView from "./Pages/TimeTable/TimeTableView";
 import AddProfessorView from "./Pages/AddProfessor/AddProfessorView";
 import AssignProfessorView from "./Pages/AssignProfessor/AssignProfessorView";
+import TotalProfessorsAndSlots from "./Pages/TotalProfessorsAndSlots/TotalProfessorsAndSlots";
 function App() {
 
   const [token, setToken] = useState();
@@ -37,7 +38,10 @@ function App() {
       routes = (
         <Switch>
           <Route path="/" exact >
-            <Redirect to="/assignLecture" />
+            <Redirect to="/totalProfessorAndLecs" />
+          </Route>
+          <Route path="/totalProfessorAndLecs">
+            <TotalProfessorsAndSlots />
           </Route>
           <Route path="/assignLecture" >
             <AssignProfessorView />
@@ -45,7 +49,7 @@ function App() {
           <Route path="/addProfessor" >
             <AddProfessorView />
           </Route>
-          <Redirect to="/assignLecture" />
+          <Redirect to="/totalProfessorAndLecs" />
         </Switch>
       );
     }

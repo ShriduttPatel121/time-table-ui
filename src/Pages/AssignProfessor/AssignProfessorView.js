@@ -10,6 +10,7 @@ import {
   Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { useHistory } from 'react-router-dom';
 
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
@@ -72,6 +73,7 @@ const AssignProfessorView = (props) => {
 
   const auth = useContext(AuthContext);
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
+  const history = useHistory()
 
   // to fetch the available professors and which are not exceeding the weekly hours contraint, when components gets mounted
   useEffect(() => {
@@ -125,6 +127,7 @@ const AssignProfessorView = (props) => {
         try {
             const resData = await sendRequest("http://localhost:8080/api/lecture/assignProfessor", "POST", JSON.stringify(value), { "Content-Type": "application/json", authorization: auth.token });
             alert(resData.message);
+            history.push("/totalProfessorAndLecs")
         } catch (e) {
             console.log(e)
             alert(error || "somthing went wrong");

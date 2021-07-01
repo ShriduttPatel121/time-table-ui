@@ -45,6 +45,14 @@ const NavLinks = (props) => {
     <>
       <Tabs value={tabValue} onChange={handleChange} className={classes.root}>
                 <Tab
+                label="Professors"
+                value="/totalProfessorAndLecs"
+                to="/totalProfessorAndLecs"
+                exact
+                component={NavLink}
+                style={{ display: (auth.isLoggedIn && (auth.userType.toUpperCase() === "ADMIN")) ? "flex" : "none" }}
+                /> 
+                <Tab
                 label="Assign Lecture"
                 value="/assignLecture"
                 to="/assignLecture"

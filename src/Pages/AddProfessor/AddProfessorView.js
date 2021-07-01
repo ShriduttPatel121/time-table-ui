@@ -10,6 +10,7 @@ import {
   Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { useHistory } from 'react-router-dom';
 
 import TextInput from "../../shared/components/TextInput/TextInput";
 import { useHttpClient } from "../../shared/hooks/http-hook";
@@ -54,6 +55,7 @@ const validation = Yup.object({
 const AddProfessorView = (props) => {
   const classes = useStyles();
   const auth = useContext(AuthContext);
+  const history = useHistory();
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
 
   return (
@@ -71,6 +73,7 @@ const AddProfessorView = (props) => {
           );
           alert(resData.message);
           resetForm();
+          history.push("/totalProfessorAndLecs")
         } catch (e) {
           console.log(e);
           alert(error || "somthing went wrong");
