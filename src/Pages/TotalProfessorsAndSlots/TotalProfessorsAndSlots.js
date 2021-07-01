@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
+const weekDays = [ "Sunday" ,"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 const TotalProfessorsAndSlots =  (props) =>{
     const [profsLectures, setProfsLectures] = useState([]);
 
@@ -69,9 +71,9 @@ const TotalProfessorsAndSlots =  (props) =>{
                             <AccordionDetails>
                                 <List style={{width: "100%"}}>
                                     <ListItem className={classes.listItem}  >
-                                        <Typography variant="body1">Class room</Typography>
-                                        <Typography variant="body1">Slot number</Typography>
-                                        <Typography variant="body1">Day</Typography>
+                                        <Typography variant="body1" style={{width: "33%", textAlign: "center"}}>Class room</Typography>
+                                        <Typography variant="body1" style={{width: "33%", textAlign: "center"}}>Slot number</Typography>
+                                        <Typography variant="body1" style={{width: "33%", textAlign: "center"}}>Day</Typography>
                                     </ListItem>
                                     <Divider />
                                     {
@@ -80,9 +82,9 @@ const TotalProfessorsAndSlots =  (props) =>{
                                         ) : (
                                             pl.lectures.map((le, i) =>(
                                             <ListItem className={classes.listItem} divider={(i < pl.lectures.length - 1)} >
-                                                <Typography variant="body2">{le.classRoom.name}</Typography>
-                                                <Typography variant="body2">{le.slotNumber + 1}</Typography>
-                                                <Typography variant="body2">{le.day}</Typography>
+                                                <Typography variant="body2" style={{width: "33%", textAlign: "center"}}>{le.classRoom.name}</Typography>
+                                                <Typography variant="body2" style={{width: "33%", textAlign: "center"}}>{le.slotNumber + 1}</Typography>
+                                                <Typography variant="body2" style={{width: "33%", textAlign: "center"}}>{weekDays[le.day]}</Typography>
                                             </ListItem>
                                         ))
                                         )
