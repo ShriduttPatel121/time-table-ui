@@ -12,13 +12,15 @@ function App() {
   const [token, setToken] = useState();
   const [userType, setUserType] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(null)
+  const [userId, setUserId] = useState(null);
+  const [name, setName] = useState("");
 
-  const login = useCallback((uid, token, type) => {
+  const login = useCallback((uid, token, type, name) => {
     setIsLoggedIn(!!token);
     setToken("Bearer " + token);
     setUserId(uid);
-    setUserType(type)
+    setUserType(type);
+    setName(name)
   }, []);
 
   const logout = useCallback(() => {
@@ -75,7 +77,7 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout, token: token, userId: userId, userType: userType}}>
+    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout, token: token, userId: userId, userType: userType, name: name}}>
       <Router>
         <Layout>
           {routes}

@@ -77,10 +77,10 @@ const Login = (props) => {
         console.log(value);
         try {
             const resData = await sendRequest("http://localhost:8080/api/auth/login", "POST", JSON.stringify(value), { "Content-Type": "application/json" });
-            auth.login(resData.userId, resData.token, resData.type);
+            auth.login(resData.userId, resData.token, resData.type, resData.name);
         } catch (e) {
             console.log(e)
-            alert(error || "somthing went wrong");
+            alert(error || e.message);
         }
       }}
     >

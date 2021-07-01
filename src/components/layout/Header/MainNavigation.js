@@ -24,7 +24,7 @@ const MainNavigation = (props) => {
           <Typography variant="h6" className={classes.title}>
             Time Table Application
           </Typography>
-          <Typography style={{margin: 'auto'}} variant="body1" >Greetings, {auth.userType}</Typography>
+          <Typography style={{margin: 'auto'}} variant="body1" >Greetings,{auth.name}, {auth.userType}</Typography>
           <span>
             <NavLinks orientation="horizontal" />
           </span>
